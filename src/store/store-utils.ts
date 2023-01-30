@@ -39,7 +39,7 @@ export function configuredStore<T>(reducers: ReducersMapObject<T, any>, middlewa
     currentStore.injectEndpoints = (injectEndpoints: any) => {
         const addedApi = rootApi.injectEndpoints({endpoints: injectEndpoints})
         // @ts-ignore
-        currentStore.replaceReducer(combineReducers({...reducers, [addedApi.reducerPath]: addedApi.reducer}));
+        currentStore.replaceReducer(combineReducers({...reducers, ...currentStore.asyncReducers, [addedApi.reducerPath]: addedApi.reducer}));
     };
 
 
