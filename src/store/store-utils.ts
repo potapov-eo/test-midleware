@@ -1,11 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import {
-    combineReducers,
-    configureStore,
-    Middleware,
-    Reducer,
-    ReducersMapObject
-} from '@reduxjs/toolkit';
+import {combineReducers, configureStore, Middleware, Reducer, ReducersMapObject} from '@reduxjs/toolkit';
 import {Api} from "@reduxjs/toolkit/query";
 
 
@@ -37,9 +31,7 @@ export function configuredStore<T>(reducers: ReducersMapObject<T, any>, middlewa
     let returnCurrentStoreType = currentStore as ReturnCurrentStoreType;
 
     currentStore.injectReducers = (injectedReducers: InjectedReducers) => {
-        // @ts-ignore
-        const asyncReducers: Reducer<object> = {[injectedReducers.reducerPath]: injectedReducers.reducer} as Reducer<object>;
-        currentStore.asyncReducers = {...currentStore.asyncReducers, ...asyncReducers} as Reducer<object>;
+        currentStore.asyncReducers = {...currentStore.asyncReducers, ...injectedReducers} as Reducer<object>;
         // @ts-ignore
         currentStore.replaceReducer(createReducer(currentStore.asyncReducers));
 
@@ -51,35 +43,35 @@ export function configuredStore<T>(reducers: ReducersMapObject<T, any>, middlewa
     };
 
 
-   /* currentStore.injectApi = (injectedApi: Api<any, any, any, any>) => {
-        if (currentStore.asyncReducers && Object.keys(currentStore.asyncReducers).find(key => key === injectedApi.reducerPath)) {
-            return
-        }
-        // @ts-ignore
-        const asyncReducer: Reducer<object> = {[injectedApi.reducerPath]: injectedApi.reducer}
-        // @ts-ignore
-        currentStore.asyncReducers = {...currentStore.asyncReducers, ...asyncReducer} as Reducer<object>;
-        currentStore.asyncMiddleware = [...currentStore.asyncMiddleware ? currentStore.asyncMiddleware : [], injectedApi.middleware]
+    /* currentStore.injectApi = (injectedApi: Api<any, any, any, any>) => {
+         if (currentStore.asyncReducers && Object.keys(currentStore.asyncReducers).find(key => key === injectedApi.reducerPath)) {
+             return
+         }
+         // @ts-ignore
+         const asyncReducer: Reducer<object> = {[injectedApi.reducerPath]: injectedApi.reducer}
+         // @ts-ignore
+         currentStore.asyncReducers = {...currentStore.asyncReducers, ...asyncReducer} as Reducer<object>;
+         currentStore.asyncMiddleware = [...currentStore.asyncMiddleware ? currentStore.asyncMiddleware : [], injectedApi.middleware]
 
-        const initialState = currentStore.getState()
-        const store = configureStore({
-            reducer: combineReducers({
-                ...reducers,
-                ...currentStore.asyncReducers
-            }),
-            preloadedState: initialState,
-            middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware).concat(currentStore.asyncMiddleware ? currentStore.asyncMiddleware : [])
-        })
+         const initialState = currentStore.getState()
+         const store = configureStore({
+             reducer: combineReducers({
+                 ...reducers,
+                 ...currentStore.asyncReducers
+             }),
+             preloadedState: initialState,
+             middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware).concat(currentStore.asyncMiddleware ? currentStore.asyncMiddleware : [])
+         })
 
-        // @ts-ignore
-        store.asyncReducers = currentStore.asyncReducers
-        // @ts-ignore
-        store.asyncMiddleware = currentStore.asyncMiddleware
-        // @ts-ignore
-        currentStore = store
+         // @ts-ignore
+         store.asyncReducers = currentStore.asyncReducers
+         // @ts-ignore
+         store.asyncMiddleware = currentStore.asyncMiddleware
+         // @ts-ignore
+         currentStore = store
 
-        currentStore.replaceReducer(combineReducers({...reducers,  ...currentStore.asyncReducers}));
-    };*/
+         currentStore.replaceReducer(combineReducers({...reducers,  ...currentStore.asyncReducers}));
+     };*/
 
     return returnCurrentStoreType;
 }

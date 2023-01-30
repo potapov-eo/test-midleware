@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {useGetUsersQuery} from "./store/main-api";
-import {useGetAlbumsQuery} from "./store/root-api";
-import TodoWrapper from "./pages/todo-wrapper";
+import {useGetUsersQuery} from "./store/api/main-api";
+import {useGetAlbumsQuery} from "./store/api/root-api";
+import TodoWrapper from "./components/todo-wrapper";
 import {useDispatch} from "react-redux";
-import Posts from "./pages/posts";
+import Posts from "./components/posts";
+import Counter from "./components/counter";
 
 function App() {
     const dispatch = useDispatch();
@@ -46,7 +47,10 @@ function App() {
                 </div>
 
             </div>
-
+            <div>
+                <h4>подключение слайс с помощью injectReducers</h4>
+            <Counter/>
+            </div>
             <button onClick={() => dispatch({type: '@@INIT'})}> init</button>
         </>
     );

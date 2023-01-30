@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useGetTodoQuery} from "../store/todo-api";
+import {useGetTodoQuery} from "../store/api/todo-api";
 import todoStore from "../store/todos-store";
 import {Provider} from "react-redux";
 

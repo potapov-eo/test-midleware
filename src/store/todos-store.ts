@@ -1,8 +1,7 @@
 /* eslint-disable */
-import { setupListeners } from '@reduxjs/toolkit/query';
+import {setupListeners} from '@reduxjs/toolkit/query';
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import {todoApi} from "./todo-api";
-
+import {todoApi} from "./api/todo-api";
 
 
 const reducers = {

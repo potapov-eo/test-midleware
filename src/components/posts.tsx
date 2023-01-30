@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {currentEndpoints, useGetPostsQuery} from "../store/posts-api";
+import {currentEndpoints, useGetPostsQuery} from "../store/api/posts-api";
 import store from "../store/store";
 
 
