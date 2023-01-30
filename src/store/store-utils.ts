@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
-    applyMiddleware,
     combineReducers,
     configureStore,
     Middleware,
@@ -52,7 +51,7 @@ export function configuredStore<T>(reducers: ReducersMapObject<T, any>, middlewa
     };
 
 
-    currentStore.injectApi = (injectedApi: Api<any, any, any, any>) => {
+   /* currentStore.injectApi = (injectedApi: Api<any, any, any, any>) => {
         if (currentStore.asyncReducers && Object.keys(currentStore.asyncReducers).find(key => key === injectedApi.reducerPath)) {
             return
         }
@@ -79,12 +78,8 @@ export function configuredStore<T>(reducers: ReducersMapObject<T, any>, middlewa
         // @ts-ignore
         currentStore = store
 
-        const rrr = store.getState()
-        const rrrcurrentStore = currentStore.getState()
-        const rrrcurrentStorethis = currentStore
         currentStore.replaceReducer(combineReducers({...reducers,  ...currentStore.asyncReducers}));
-        debugger
-    };
+    };*/
 
     return returnCurrentStoreType;
 }
