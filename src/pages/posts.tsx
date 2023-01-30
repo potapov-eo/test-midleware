@@ -1,9 +1,16 @@
-import React, {useEffect} from 'react';
-import {useGetPostsQuery} from "../store/posts-api";
+import React, {useEffect, useState} from 'react';
+import {currentEndpoints, useGetPostsQuery} from "../store/posts-api";
+import store from "../store/store";
 
 
 function Posts() {
+    const [init,setInit] = useState (false)
     useEffect( ()=>{
+        if(!init) {
+            store.injectEndpoints(currentEndpoints);
+            setInit(true)
+        }
+
     },[])
     const {data} = useGetPostsQuery({});
 

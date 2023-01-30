@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
 
 export const rootApi = createApi({
-    reducerPath: 'postsApi',
+    reducerPath: 'rootApi',
     baseQuery: fetchBaseQuery({ baseUrl: ''}),
     endpoints: (builder) => ({
         getAlbums: builder.query<any, any>({

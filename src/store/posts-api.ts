@@ -9,7 +9,7 @@ export const currentEndpoints = (builder:  EndpointBuilder<any,any,any>) =>({
 })
 
 export const postsApi = createApi({
-    reducerPath: 'postsApi',
+    reducerPath: 'rootApi',
     baseQuery: fetchBaseQuery({ baseUrl: ''}),
     endpoints: currentEndpoints
 });

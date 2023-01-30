@@ -1,16 +1,17 @@
 import React, {useEffect} from 'react';
 import {useGetTodoQuery} from "../store/todo-api";
+import todoStore from "../store/todos-store";
+import {Provider} from "react-redux";
 
 
 function Todos() {
-    useEffect( ()=>{
-    },[])
+
     const {data} = useGetTodoQuery({});
 
     return (
-        <div>
-            {data && data.slice(0,10).map((item: any) => <div key={item.title}>{item.title}</div>)}
-        </div>
+            <div>
+                {data && data.slice(0, 10).map((item: any) => <div key={item.title}>{item.title}</div>)}
+            </div>
     );
 }
 
