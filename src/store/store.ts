@@ -15,8 +15,16 @@ type MainState = ReturnType<typeof mainStore.getState>
 
 
 const store = configuredStore<MainState>(reducers,
-    // @ts-ignore
-    [mainApi.middleware, rootApi.middleware], rootApi
+    (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: [
+                'warnings/pushWarning',
+                'warnings/deleteWarning',
+            ],
+            ignoredPaths: ['warnings.data'],
+        },
+    }).concat(rootApi.middleware).concat(mainApi.middleware)
+  , {rootApi : rootApi}
 )
 
 setupListeners(store.dispatch);
